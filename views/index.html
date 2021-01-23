@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<section class="content-header" style="margin-top: 49px;">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h3>Student</h3>
+        </div>
+        <div class="col-sm-2">
+            <a href="/student/add" class="btn btn-block btn-primary">Add Student</a>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <section class="content">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>#</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    
+                    {% for students in student %}
+            
+                    <tr>
+                        <td>{{ students.dataValues.firstName }}</td>
+                        <td>{{ students.dataValues.lastName }}</td>
+                        <td>
+                            <a href="/student/{{ students.dataValues.id }}" class="btn btn-info">Edit</a>
+                            <form method="POST" action="/student/{{ students.dataValues.id }}?_method=DELETE">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+            
+                  {% endfor %}
+            
+                </tbody>
+              </table>
+        </div>
+     </div>
+  </div>
+
+{% endblock %}

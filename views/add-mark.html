@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<section class="container">
+    <div class="row" style="margin-top: 50px;">
+        <h3>Add Mark</h3>
+      <div class="col-6">
+        <form action="/mark/" method="POST">
+            <div class="form-group">
+                <select class="form-control" name="studentId" id="studentId">
+                    {% for students in student %}
+                         <option value="{{ students.dataValues.id }}">{{ students.dataValues.firstName }} {{ students.dataValues.lastName }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Node">Node</label>
+                 <input type="number" class="form-control" id="Node" name="node" placeholder="Enter NODE Mark">
+             </div>
+            <div class="form-group">
+                <label for="php">Php</label>
+                <input type="number" class="form-control" id="php" name="php" placeholder="Enter PHP Mark">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

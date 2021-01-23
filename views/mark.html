@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<section class="content-header" style="margin-top: 49px;">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h3>Mark</h3>
+        </div>
+        <div class="col-sm-2">
+            <a href="/mark/add" class="btn btn-block btn-primary">Add Mark</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Node</th>
+                    <th>PHP</th>
+                    <th>Student Name</th>
+                    <th>#</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    
+                    {% for marks in mark %}
+            
+                    <tr>
+                        <td>{{ marks.dataValues.node }}</td>
+                        <td>{{ marks.dataValues.php }}</td>
+                        <td>{{ marks.dataValues.StudentRef.dataValues.firstName}}</td>
+                        <td>
+                            <a href="/mark/{{ marks.dataValues.id }}" class="btn btn-info">Edit</a>
+                            <form method="POST" action="/mark/{{ marks.dataValues.id }}?_method=DELETE">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+            
+                  {% endfor %}
+            
+                </tbody>
+              </table>
+        </div>
+     </div>
+  </div>
+
+{% endblock %}
